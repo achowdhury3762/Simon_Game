@@ -50,8 +50,6 @@ public class GameActivity extends AppCompatActivity {
 
 
     public void flashColors(){
-//            String id = currentButton.getResources().getResourceName(currentButton.getId());
-//            Log.d("Tag", id);
         handler = new Handler();
         Runnable runner = new Runnable(){
             @Override
@@ -62,8 +60,6 @@ public class GameActivity extends AppCompatActivity {
                     return;
                 }
                 if(count>=1){
-                    Button button = (Button) findViewById(randButton.get(count-1).id);
-                    button.setBackgroundResource(R.drawable.colorbuttns);
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -80,9 +76,24 @@ public class GameActivity extends AppCompatActivity {
             }
         };
         handler.postDelayed(runner,1000);
-
-
-
+//        for(count =0; count<randButton.size();count++) {
+//            final int finalCount = count;
+//            new Handler.postDelayed(new Runnable() {
+//                @Override
+//                public void run() {
+//                    Button button = (Button) findViewById(randButton.get(finalCount).id);
+//                    button.setBackgroundResource(R.drawable.colorbuttns);
+//                }
+//            }, (5000*count)+4000);
+//
+//            new Handler.postDelayed(new Runnable() {
+//                @Override
+//                public void run() {
+//                    Button button = (Button) findViewById(randButton.get(finalCount).id);
+//                    button.setBackgroundColor(button.getCurrentTextColor());
+//                }
+//            }, 5000*count);
+//        }
     }
 
 
