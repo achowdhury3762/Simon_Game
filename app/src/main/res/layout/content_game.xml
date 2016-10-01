@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+
+    >
+
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:baselineAligned="false"
+        tools:context="nyc.c4q.ashiquechowdhury.memorygame.ButtonGame">
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <Button
+                android:onClick="click"
+                android:id="@+id/yellowbtn"
+                android:layout_weight="1"
+                android:background="@drawable/colorbuttns"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Y"
+                android:textStyle="bold"
+                android:textColor="@color/yellow"
+                android:textSize="@dimen/letterSize" />
+            <Button
+                android:onClick="click"
+                android:layout_weight="1"
+                android:background="@drawable/colorbuttns"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="R"
+                android:textColor="@color/red"
+                android:id="@+id/redbtn"
+                android:layout_gravity="center_vertical"
+                android:textSize="@dimen/letterSize" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="2"
+            android:orientation="vertical">
+            <Button
+                android:onClick="click"
+                android:layout_weight="1"
+                android:background="@drawable/colorbuttns"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="G"
+                android:textColor="@color/green"
+                android:id="@+id/greenbtn"
+                android:textSize="@dimen/letterSize" />
+
+            <Button
+                android:onClick="click"
+                android:layout_weight="1"
+                android:background="@drawable/colorbuttns"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="B"
+                android:id="@+id/bluebtn"
+                android:textColor="@color/blue"
+                android:textSize="@dimen/letterSize" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/circle"
+        android:textSize="20sp"/>
+    <TextView
+        android:id="@+id/level"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/level"
+        android:textSize="50sp"
+        android:layout_centerInParent="true"/>
+
+
+</RelativeLayout>
