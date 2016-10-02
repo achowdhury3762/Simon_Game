@@ -48,52 +48,37 @@ public class GameActivity extends AppCompatActivity {
         randButton.add(randButtn);
     }
 
-
     public void flashColors(){
         handler = new Handler();
         Runnable runner = new Runnable(){
             @Override
             public void run() {
                 if(count==randButton.size()){
+                    Log.d("a","count = randomButton.size");
                     Button button = (Button) findViewById(randButton.get(count-1).id);
                     button.setBackgroundResource(R.drawable.colorbuttns);
                     return;
                 }
                 if(count>=1){
+                    Log.d("a","count > = 1");
+                    Button button = (Button) findViewById(randButton.get(count-1).id);
+                    button.setBackgroundResource(R.drawable.colorbuttns);
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             Button button = (Button) findViewById(randButton.get(count-1).id);
                             button.setBackgroundResource(R.drawable.colorbuttns);
                         }
-                    }, 500);
+                    }, 300);
                 }
-
+                Log.d("a","runnn");
                 Button button = (Button) findViewById(randButton.get(count).id);
                 button.setBackgroundColor(button.getCurrentTextColor());
                 count++;
                 handler.postDelayed(this,800);
             }
         };
-        handler.postDelayed(runner,1000);
-//        for(count =0; count<randButton.size();count++) {
-//            final int finalCount = count;
-//            new Handler.postDelayed(new Runnable() {
-//                @Override
-//                public void run() {
-//                    Button button = (Button) findViewById(randButton.get(finalCount).id);
-//                    button.setBackgroundResource(R.drawable.colorbuttns);
-//                }
-//            }, (5000*count)+4000);
-//
-//            new Handler.postDelayed(new Runnable() {
-//                @Override
-//                public void run() {
-//                    Button button = (Button) findViewById(randButton.get(finalCount).id);
-//                    button.setBackgroundColor(button.getCurrentTextColor());
-//                }
-//            }, 5000*count);
-//        }
+        handler.postDelayed(runner,800);
     }
 
 
