@@ -21,7 +21,7 @@ public class Simon extends AppCompatActivity {
     private List<Buttons> userColors = new ArrayList<>();
     Random random = new Random();
     int currentButtonIndex = -1;
-    int level = 0;
+    int level = 1;
 
     Button redButton;
     Button greenButton;
@@ -157,6 +157,7 @@ public class Simon extends AppCompatActivity {
         else {
             if(randColors.get(currentButtonIndex)!=userColors.get(currentButtonIndex)){
                 Toast.makeText(this, "GAME OVER", Toast.LENGTH_LONG).show();
+                lvl.setText(String.valueOf(1));
                 recreate();
 //                lvl.setText(String.valueOf(1));
 //                level = 0;
