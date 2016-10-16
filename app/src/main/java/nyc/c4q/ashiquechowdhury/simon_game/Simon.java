@@ -1,5 +1,6 @@
 package nyc.c4q.ashiquechowdhury.simon_game;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -171,6 +172,7 @@ public class Simon extends AppCompatActivity {
 
     public void clickedButton(View view){
         currentButtonIndex++;
+        playSound();
         switch(view.getId()){
             case R.id.redBttn:
                 userColors.add(Buttons.REDBUTTON);
@@ -193,6 +195,11 @@ public class Simon extends AppCompatActivity {
                 blinkyellow();
                 break;
         }
+    }
+
+    void playSound(){
+        final MediaPlayer mp = MediaPlayer.create(this, R.raw.buttonsound);
+        mp.start();
     }
 }
 

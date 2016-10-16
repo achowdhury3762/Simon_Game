@@ -11,7 +11,6 @@ public enum Buttons {
     GREENBUTTON(R.id.greenBttn),
     BLUEBUTTON(R.id.blueBttn);
 
-
     public int id;
 
     private Buttons(int value){
