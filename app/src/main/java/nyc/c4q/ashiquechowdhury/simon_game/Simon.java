@@ -156,15 +156,19 @@ public class Simon extends AppCompatActivity {
                 }
             }, 300);
 
-
-            Intent intent = new Intent(this, CongratsActivity.class);
-            startActivity(intent);
         }
         else {
             if(randColors.get(currentButtonIndex)!=userColors.get(currentButtonIndex)){
                 loserSound();
                 Toast.makeText(this, "GAME OVER", Toast.LENGTH_LONG).show();
                 lvl.setText(String.valueOf(1));
+
+
+
+                Intent intent = new Intent(this, GameOverActivity.class);
+                startActivity(intent);
+
+
                 recreate();
 //                lvl.setText(String.valueOf(1));
 //                level = 0;
