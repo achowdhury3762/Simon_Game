@@ -1,5 +1,6 @@
 package nyc.c4q.ashiquechowdhury.simon_game;
 
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
@@ -154,9 +155,14 @@ public class Simon extends AppCompatActivity {
                     startLevel();
                 }
             }, 300);
+
+
+            Intent intent = new Intent(this, CongratsActivity.class);
+            startActivity(intent);
         }
         else {
             if(randColors.get(currentButtonIndex)!=userColors.get(currentButtonIndex)){
+                loserSound();
                 Toast.makeText(this, "GAME OVER", Toast.LENGTH_LONG).show();
                 lvl.setText(String.valueOf(1));
                 recreate();
@@ -199,6 +205,11 @@ public class Simon extends AppCompatActivity {
 
     void playSound(){
         final MediaPlayer mp = MediaPlayer.create(this, R.raw.buttonsound);
+        mp.start();
+    }
+
+    void loserSound(){
+        final MediaPlayer mp = MediaPlayer.create(this, R.raw.wrong_move);
         mp.start();
     }
 }
