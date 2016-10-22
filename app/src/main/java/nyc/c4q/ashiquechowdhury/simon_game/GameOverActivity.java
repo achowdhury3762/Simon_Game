@@ -19,16 +19,16 @@ public class GameOverActivity extends AppCompatActivity {
         setContentView(R.layout.activity_gameover);
 
         Animation animation = AnimationUtils.loadAnimation(this, R.anim.rotate);
-        ImageView imageView = (ImageView) findViewById(R.id.congrats);
+        ImageView imageView = (ImageView) findViewById(R.id.game_overimage);
         imageView.setAnimation(animation);
 
-        playConrats();
+        playCongrats();
 
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(GameOverActivity.this, Simon.class));
+                startActivity(new Intent(GameOverActivity.this, NewGame.class));
                 finish();
             }
         }, 6000);
@@ -36,7 +36,7 @@ public class GameOverActivity extends AppCompatActivity {
 
     }
 
-    void playConrats(){
+    void playCongrats(){
         final MediaPlayer mp = MediaPlayer.create(this, R.raw.gameover);
         mp.start();
     }

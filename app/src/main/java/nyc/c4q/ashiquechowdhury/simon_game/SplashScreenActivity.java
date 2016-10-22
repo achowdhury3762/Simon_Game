@@ -24,6 +24,10 @@ public class SplashScreenActivity extends AppCompatActivity {
         imageView.setAnimation(animation);
 
 
+//        ImageView image = (ImageView) findViewById(R.id.imageView);
+//        Animation hyperspaceJump = AnimationUtils.loadAnimation(this, R.anim.hyperspacejump);
+//        image.startAnimation(hyperspaceJump);
+
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override

@@ -16,8 +16,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="nyc.c4q.ashiquechowdhury.simon_game.Simon"></activity>
-        <activity android:name="nyc.c4q.ashiquechowdhury.simon_game.GameOverActivity"></activity>
+        <activity android:name="nyc.c4q.ashiquechowdhury.simon_game.Simon" />
+        <activity android:name="nyc.c4q.ashiquechowdhury.simon_game.GameOverActivity" />
+        <activity android:name="nyc.c4q.ashiquechowdhury.simon_game.NewGame"></activity>
     </application>
 
 </manifest>
