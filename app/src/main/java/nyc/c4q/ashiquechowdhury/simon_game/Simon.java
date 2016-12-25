@@ -160,9 +160,6 @@ public class Simon extends AppCompatActivity {
                 }
             }, 300);
 
-
-            Intent intent = new Intent(this, CongratsActivity.class);
-            startActivity(intent);
         }
         else {
 
@@ -173,6 +170,9 @@ public class Simon extends AppCompatActivity {
                 Toast.makeText(this, "GAME OVER", Toast.LENGTH_LONG).show();
                 lvl.setText(String.valueOf(1));
 
+
+                Intent intent = new Intent(this, GameOverActivity.class);
+                startActivity(intent);
                 recreate();
             }
         }

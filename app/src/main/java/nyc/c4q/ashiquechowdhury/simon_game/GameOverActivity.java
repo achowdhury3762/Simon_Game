@@ -1,41 +1,43 @@
 package nyc.c4q.ashiquechowdhury.simon_game;
 
 import android.content.Intent;
-import android.os.Bundle;
+import android.media.MediaPlayer;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import nyc.c4q.wesniemarcelin.newmemgameapp.R;
 
-/**
- * Created by wesnie on 10/1/16.
- */
-public class SplashScreenActivity extends AppCompatActivity {
+public class GameOverActivity extends AppCompatActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.splash_screen);
+        setContentView(R.layout.activity_gameover);
 
-        Animation animation = AnimationUtils.loadAnimation(this, R.anim.move_up);
-        ImageView imageView = (ImageView) findViewById(R.id.imageView);
+        Animation animation = AnimationUtils.loadAnimation(this, R.anim.rotate);
+        ImageView imageView = (ImageView) findViewById(R.id.game_overimage);
         imageView.setAnimation(animation);
 
-
-//        ImageView image = (ImageView) findViewById(R.id.imageView);
-//        Animation hyperspaceJump = AnimationUtils.loadAnimation(this, R.anim.hyperspacejump);
-//        image.startAnimation(hyperspaceJump);
+        playCongrats();
 
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(SplashScreenActivity.this, Simon.class));
+                startActivity(new Intent(GameOverActivity.this, NewGame.class));
                 finish();
             }
         }, 6000);
 
+
+    }
+
+    void playCongrats(){
+        final MediaPlayer mp = MediaPlayer.create(this, R.raw.gameover);
+        mp.start();
     }
 }

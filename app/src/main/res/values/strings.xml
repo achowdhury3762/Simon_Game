@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">NewMemGameApp</string>
+    <string name="play_again">PLAY AGAIN</string>
+    <string name="end_game">END GAME</string>
 </resources>

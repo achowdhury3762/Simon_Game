@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_new_game"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/background3"
+    tools:context="nyc.c4q.ashiquechowdhury.simon_game.NewGame">
+
+    <Button
+        android:id="@+id/play_again"
+        android:text="@string/play_again"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_width="match_parent"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/end_game"
+        android:text="@string/end_game"
+        android:layout_below="@id/play_again"
+        android:layout_width="match_parent"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:id="@+id/simon_says_icon"
+        android:src="@drawable/simon"
+        android:paddingTop="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="250dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>
