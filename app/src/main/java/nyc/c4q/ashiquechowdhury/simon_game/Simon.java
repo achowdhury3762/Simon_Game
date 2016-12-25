@@ -4,7 +4,6 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -18,6 +17,7 @@ import nyc.c4q.wesniemarcelin.newmemgameapp.R;
 
 
 public class Simon extends AppCompatActivity {
+    MediaPlayer mp;
     Handler handler = new Handler();
     private List<Integer> computerColors = new ArrayList<>();
     private List<Integer> userColors = new ArrayList<>();
@@ -146,12 +146,11 @@ public class Simon extends AppCompatActivity {
         int rand = random.nextInt(4);
         Integer randButtn = buttonArray[rand];
         computerColors.add(randButtn);
-        Log.d("addRandomColorHasAdded",buttonArray[rand].toString());
     }
 
     private void checkforWin() {
         if(computerColors.equals(userColors)){
-            Log.d("here","I am here");
+
             Toast.makeText(this, "CONGRATULATIONS", Toast.LENGTH_LONG).show();
             handler.postDelayed(new Runnable() {
                 @Override
@@ -161,14 +160,11 @@ public class Simon extends AppCompatActivity {
             }, 300);
         }
         else {
-            Log.d("check","randColor does not equal user color");
-            Log.d("compColors",String.valueOf(computerColors.size()));
-            Log.d("userColors",String.valueOf(userColors.size()));
+
             if(!computerColors.get(currentButtonIndex).equals(userColors.get(currentButtonIndex))){
                 Toast.makeText(this, "GAME OVER", Toast.LENGTH_LONG).show();
                 lvl.setText(String.valueOf(1));
-                Log.d("recreate",computerColors.get(currentButtonIndex).toString());
-                Log.d("recreate",userColors.get(currentButtonIndex).toString());
+
                 recreate();
             }
         }
@@ -203,8 +199,15 @@ public class Simon extends AppCompatActivity {
     }
 
     void playSound(){
-        final MediaPlayer mp = MediaPlayer.create(this, R.raw.buttonsound);
+        mp = MediaPlayer.create(this, R.raw.buttonsound);
         mp.start();
+
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mp.release();
+            }
+        },1000);
     }
 }
 
