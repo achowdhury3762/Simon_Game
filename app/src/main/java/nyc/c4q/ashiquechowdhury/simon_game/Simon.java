@@ -18,9 +18,10 @@ import nyc.c4q.wesniemarcelin.newmemgameapp.R;
 
 
 public class Simon extends AppCompatActivity {
+    MediaPlayer mp;
     Handler handler = new Handler();
-    private List<Buttons> randColors = new ArrayList<>();
-    private List<Buttons> userColors = new ArrayList<>();
+    private List<Integer> computerColors = new ArrayList<>();
+    private List<Integer> userColors = new ArrayList<>();
     Random random = new Random();
     int currentButtonIndex = -1;
     int level = 1;
@@ -31,11 +32,11 @@ public class Simon extends AppCompatActivity {
     Button blueButton;
     TextView lvl;
 
-    Buttons buttonArray[] = {
-            Buttons.REDBUTTON,
-            Buttons.GREENBUTTON,
-            Buttons.BLUEBUTTON,
-            Buttons.YELLOWBUTTON
+    Integer buttonArray[] = {
+            R.id.blueBttn,
+            R.id.greenBttn,
+            R.id.redBttn,
+            R.id.yellowBttn
     };
 
     @Override
@@ -49,9 +50,9 @@ public class Simon extends AppCompatActivity {
         blueButton = (Button) findViewById(R.id.blueBttn);
         lvl = (TextView) findViewById(R.id.round_number);
 
-
         startLevel();
     }
+
     private void startLevel() {
         currentButtonIndex=-1;
         userColors.clear();
@@ -65,9 +66,9 @@ public class Simon extends AppCompatActivity {
     }
 
     void flashColors(){
-        for (int i = 0; i < randColors.size(); i++) {
-            switch(randColors.get(i)) {
-                case BLUEBUTTON:
+        for (int i = 0; i < computerColors.size(); i++) {
+            switch(computerColors.get(i)) {
+                case R.id.blueBttn:
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -75,7 +76,7 @@ public class Simon extends AppCompatActivity {
                         }
                     }, 1000 * (i+1));
                     break;
-                case YELLOWBUTTON:
+                case R.id.yellowBttn:
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -83,7 +84,7 @@ public class Simon extends AppCompatActivity {
                         }
                     }, 1000 * (i+1));
                     break;
-                case GREENBUTTON:
+                case R.id.greenBttn:
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -91,7 +92,7 @@ public class Simon extends AppCompatActivity {
                         }
                     }, 1000 * (i+1));
                     break;
-                case REDBUTTON:
+                case R.id.redBttn:
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -102,7 +103,9 @@ public class Simon extends AppCompatActivity {
             }
         }
     }
+
     int number = 400;
+
     void blinkblue() {
         blueButton.setBackgroundResource(R.color.brightblue);
         handler.postDelayed(new Runnable() {
@@ -142,12 +145,13 @@ public class Simon extends AppCompatActivity {
 
     public void addRandomColor(){
         int rand = random.nextInt(4);
-        Buttons randButtn = buttonArray[rand];
-        randColors.add(randButtn);
+        Integer randButtn = buttonArray[rand];
+        computerColors.add(randButtn);
     }
 
     private void checkforWin() {
-        if(randColors.equals(userColors)){
+        if(computerColors.equals(userColors)){
+
             Toast.makeText(this, "CONGRATULATIONS", Toast.LENGTH_LONG).show();
             handler.postDelayed(new Runnable() {
                 @Override
@@ -158,23 +162,18 @@ public class Simon extends AppCompatActivity {
 
         }
         else {
-            if(randColors.get(currentButtonIndex)!=userColors.get(currentButtonIndex)){
-                loserSound();
+
+
+
+            if(!computerColors.get(currentButtonIndex).equals(userColors.get(currentButtonIndex))){
+                              loserSound();
                 Toast.makeText(this, "GAME OVER", Toast.LENGTH_LONG).show();
                 lvl.setText(String.valueOf(1));
 
 
-
                 Intent intent = new Intent(this, GameOverActivity.class);
                 startActivity(intent);
-
-
                 recreate();
-//                lvl.setText(String.valueOf(1));
-//                level = 0;
-//                randColors.clear();
-//                userColors.clear();
-//                startLevel();
             }
         }
     }
@@ -185,22 +184,22 @@ public class Simon extends AppCompatActivity {
         playSound();
         switch(view.getId()){
             case R.id.redBttn:
-                userColors.add(Buttons.REDBUTTON);
+                userColors.add(R.id.redBttn);
                 checkforWin();
                 blinkred();
                 break;
             case R.id.blueBttn:
-                userColors.add(Buttons.BLUEBUTTON);
+                userColors.add(R.id.blueBttn);
                 checkforWin();
                 blinkblue();
                 break;
             case R.id.greenBttn:
-                userColors.add(Buttons.GREENBUTTON);
+                userColors.add(R.id.greenBttn);
                 checkforWin();
                 blinkgreen();
                 break;
             case R.id.yellowBttn:
-                userColors.add(Buttons.YELLOWBUTTON);
+                userColors.add(R.id.yellowBttn);
                 checkforWin();
                 blinkyellow();
                 break;
@@ -208,8 +207,15 @@ public class Simon extends AppCompatActivity {
     }
 
     void playSound(){
-        final MediaPlayer mp = MediaPlayer.create(this, R.raw.buttonsound);
+        mp = MediaPlayer.create(this, R.raw.buttonsound);
         mp.start();
+
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mp.release();
+            }
+        },1000);
     }
 
     void loserSound(){
